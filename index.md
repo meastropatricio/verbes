@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>100 Verbes Français-Espagnol</title>
+    <title>100 Verbes Français-Espagnol</title> 
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
+        /* Réinitialisation de base */
         * {
             margin: 0;
             padding: 0;
@@ -17,22 +18,26 @@
         }
 
         body {
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Poppins en premier */
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             overflow: hidden;
             height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .presentation-container {
             display: flex;
             flex-direction: column;
-            height: 100vh;
+            flex: 1;
             position: relative;
+            justify-content: center;
+            align-items: center;
         }
 
         .slide {
             display: none;
-            flex: 1;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
@@ -43,11 +48,12 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
+            max-width: 90%;
+            max-height: 90%;
         }
 
         .slide.active {
             display: flex;
-            flex-direction: column;
             animation: slideIn 0.5s ease-in-out;
         }
 
@@ -71,6 +77,7 @@
             border-radius: 15px;
             font-weight: bold;
             color: #667eea;
+            z-index: 10;
         }
 
         .verb-container {
@@ -98,19 +105,26 @@
             transform: scale(1.1);
         }
 
+        /* Taille de police réduite pour les verbes français et espagnols */
         .french-verb {
-            font-size: 3.5em;
+            font-size: 2.8em; /* Réduit d'environ 20% par rapport à 3.5em */
             font-weight: bold;
             color: #2c3e50;
             margin-bottom: 10px;
             text-transform: capitalize;
+            word-break: break-word; /* Assure que les mots longs peuvent se couper */
+            overflow-wrap: break-word; /* Pour les navigateurs modernes */
+            padding: 0 10px; /* Ajoute un peu de padding pour les verbes longs */
         }
 
         .spanish-verb {
-            font-size: 2.5em;
+            font-size: 2em; /* Réduit d'environ 20% par rapport à 2.5em */
             color: #e74c3c;
             font-weight: 600;
             font-style: italic;
+            word-break: break-word; /* Assure que les mots longs peuvent se couper */
+            overflow-wrap: break-word; /* Pour les navigateurs modernes */
+            padding: 0 10px; /* Ajoute un peu de padding pour les verbes longs */
         }
 
         .flag-container {
@@ -140,22 +154,22 @@
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 10px; /* Réduit l'espace entre les boutons */
+            gap: 10px;
             z-index: 1000;
         }
 
         .btn {
-            padding: 12px 20px; /* Réduit le padding pour des boutons plus petits */
+            padding: 12px 20px;
             border: none;
-            border-radius: 20px; /* Ajuste le border-radius */
-            font-size: 15px; /* Réduit la taille de police */
+            border-radius: 20px;
+            font-size: 15px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            display: flex; /* Pour aligner l'icône et le texte */
+            display: flex;
             align-items: center;
-            gap: 5px; /* Espace entre l'icône et le texte */
+            gap: 5px;
         }
 
         .btn-prev {
@@ -208,6 +222,77 @@
         .title-slide p {
             font-size: 1.5em;
             opacity: 0.9;
+        }
+        
+        /* Media queries pour l'adaptation mobile */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px;
+                margin: 10px;
+            }
+            .verb-image {
+                width: 120px;
+                height: 120px;
+                font-size: 50px;
+            }
+            /* Ajustements pour les verbes sur mobile */
+            .french-verb {
+                font-size: 2em; /* Plus petit pour les écrans plus petits */
+            }
+            .spanish-verb {
+                font-size: 1.5em; /* Plus petit pour les écrans plus petits */
+            }
+            .title-slide h1 {
+                font-size: 3em;
+            }
+            .title-slide p {
+                font-size: 1.2em;
+            }
+            .btn {
+                padding: 10px 15px;
+                font-size: 14px;
+                border-radius: 15px;
+            }
+            .controls {
+                bottom: 15px;
+                gap: 8px;
+            }
+            .slide-number {
+                top: 10px;
+                right: 10px;
+                padding: 8px 12px;
+                font-size: 0.8em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .verb-image {
+                width: 100px;
+                height: 100px;
+                font-size: 40px;
+            }
+            /* Ajustements supplémentaires pour les très petits écrans */
+            .french-verb {
+                font-size: 1.7em;
+            }
+            .spanish-verb {
+                font-size: 1.2em;
+            }
+            .title-slide h1 {
+                font-size: 2.5em;
+            }
+            .title-slide p {
+                font-size: 1em;
+            }
+            .btn {
+                padding: 8px 12px;
+                font-size: 12px;
+                border-radius: 12px;
+            }
+            .controls {
+                bottom: 10px;
+                gap: 5px;
+            }
         }
     </style>
 </head>
@@ -333,17 +418,16 @@
         let isAutoplay = false;
         let autoplayInterval;
 
-        // Créer les slides
+        // Créer les slides dynamiquement
         function createSlides() {
             const container = document.querySelector('.presentation-container');
             
-            // J'ai mis à jour le numéro de slide pour correspondre à 100 verbes + 1 slide de titre.
-            // Le premier slide est le 1/101, le dernier verbe sera le 101/101.
             verbs.forEach((verb, index) => {
                 const slide = document.createElement('div');
                 slide.className = 'slide';
+                // Le numéro de slide commence à 2 car le premier slide est le slide de titre (1/101)
                 slide.innerHTML = `
-                    <div class="slide-number">${index + 2}/101</div>
+                    <div class="slide-number">${index + 2}/${verbs.length + 1}</div>
                     <div class="verb-container">
                         <div class="verb-image">${verb.emoji}</div>
                         <div class="french-verb">${verb.french}</div>
@@ -358,6 +442,7 @@
             });
         }
 
+        // Met à jour le slide actuellement affiché
         function updateSlide() {
             const slides = document.querySelectorAll('.slide');
             const totalSlides = slides.length;
@@ -366,15 +451,16 @@
                 slide.classList.toggle('active', index === currentSlide);
             });
 
-            // Mettre à jour la barre de progression
+            // Met à jour la barre de progression
             const progress = (currentSlide / (totalSlides - 1)) * 100;
             document.getElementById('progressBar').style.width = progress + '%';
 
-            // Mettre à jour les boutons
+            // Gère l'état des boutons Précédent/Suivant
             document.getElementById('prevBtn').disabled = currentSlide === 0;
             document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
         }
 
+        // Passe au slide suivant
         function nextSlide() {
             const totalSlides = document.querySelectorAll('.slide').length;
             if (currentSlide < totalSlides - 1) {
@@ -383,6 +469,7 @@
             }
         }
 
+        // Passe au slide précédent
         function previousSlide() {
             if (currentSlide > 0) {
                 currentSlide--;
@@ -390,6 +477,7 @@
             }
         }
 
+        // Active/désactive le mode de lecture automatique
         function toggleAutoplay() {
             const playBtn = document.getElementById('playBtn');
             
@@ -408,34 +496,34 @@
                     if (currentSlide < totalSlides - 1) {
                         nextSlide();
                     } else {
-                        toggleAutoplay(); // Arrêter à la fin
+                        toggleAutoplay(); // Arrêter à la fin de la présentation
                     }
-                }, 3000);
+                }, 3000); // Change de slide toutes les 3 secondes
             }
         }
 
-        // Navigation au clavier
+        // Permet la navigation au clavier
         document.addEventListener('keydown', (e) => {
             switch(e.key) {
-                case 'ArrowRight':
-                case ' ':
+                case 'ArrowRight': // Flèche droite
+                case ' ': // Barre espace
                     nextSlide();
                     break;
-                case 'ArrowLeft':
+                case 'ArrowLeft': // Flèche gauche
                     previousSlide();
                     break;
-                case 'Home':
+                case 'Home': // Touche "Début"
                     currentSlide = 0;
                     updateSlide();
                     break;
-                case 'End':
+                case 'End': // Touche "Fin"
                     currentSlide = document.querySelectorAll('.slide').length - 1;
                     updateSlide();
                     break;
             }
         });
 
-        // Initialisation
+        // Initialisation de la présentation au chargement de la page
         createSlides();
         updateSlide();
     </script>

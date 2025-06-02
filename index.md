@@ -118,9 +118,9 @@
         }
 
         .spanish-verb {
-            font-size: 2em; /* Réduit d'environ 20% par rapport à 2.5em */
+            font-size: 2.8em; /* Réduit d'environ 20% par rapport à 3.5em */
             color: #e74c3c;
-            font-weight: 600;
+            font-weight: bold;
             font-style: italic;
             word-break: break-word; /* Assure que les mots longs peuvent se couper */
             overflow-wrap: break-word; /* Pour les navigateurs modernes */
